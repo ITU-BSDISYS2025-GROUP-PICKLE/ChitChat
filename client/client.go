@@ -99,4 +99,24 @@ func main() {
 			log.Fatalf("client.RouteChat: stream.Send(%v) failed: %v", err, err)
 		}
 	}
+
+	// Send departure message to server
+	departure := fmt.Sprintf("Participant %s left the ChitChat at logical time %d", clientName, lamportTime)
+	err = stream.Send(&pb.Message{Message: departure, ClientName: clientName, Time: lamportTime})
+	if err != nil {
+		log.Fatalf("client.RouteChat: stream.Send(%v) failed: %v", err, err)
+	}
+
+	// Receive message from server so this client sees the departure message go through
+	in, err = stream.Recv()
+	if err != nil {
+		log.Fatalf("client.RouteChat failed: %v", err)
+	}
+	if in.Time >= lamportTime {
+		fmt.Printf("T%d | %s > %s\n", in.Time, in.ClientName, in.Message)
+		lamportTime = in.Time + 1
+	}
+
+	// Close the receiving stream, let program terminate
+	stream.CloseSend()
 }
