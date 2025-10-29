@@ -4,6 +4,7 @@ import (
 	pb "ChitChat/proto"
 	"bufio"
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -50,4 +51,11 @@ func main() {
 
 	// Create Lamport timestamp
 	var lamportTime int64 = in.Time + 1
+
+	// Send arrival message to server
+	arrival := fmt.Sprintf("Participant %s joined the ChitChat at logical time %d", clientName, lamportTime)
+	err = stream.Send(&pb.Message{Message: arrival, ClientName: clientName, Time: lamportTime})
+	if err != nil {
+		log.Fatalf("client.RouteChat: stream.Send(%v) failed: %v", err, err)
+	}
 }
