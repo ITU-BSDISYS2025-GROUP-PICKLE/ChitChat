@@ -1,0 +1,23 @@
+
+syntax = "proto3";
+option go_package = "ChitChat/proto";
+
+package proto;
+
+service ChitChat {
+    // A Bidirectional streaming RPC.
+    // Accepts a stream of Messages sent, while receiving other Messages (from other users).
+    rpc ChatRoom(stream Message) returns (stream Message) {}
+}
+
+// A Message contains the client's name, the message content and a Lamport timestamp.
+message Message {
+  // The client's name.
+  string client_name = 1;
+
+  // The message to be sent.
+  string message = 2;
+
+  // Lamport timestamp.
+  int64 time = 3;
+}

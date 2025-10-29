@@ -1,0 +1,14 @@
+2025/10/29 16:14:27 Server started. Listening on: localhost:50051
+2025/10/29 16:14:40 Client Alice @ T1> Participant Alice joined the ChitChat at logical time 1
+2025/10/29 16:14:55 Client Bobby @ T2> Participant Bobby joined the ChitChat at logical time 2
+2025/10/29 16:14:58 Client Bobby @ T3> Hello!
+2025/10/29 16:15:02 Client Alice @ T4> Hey there!
+2025/10/29 16:15:05 Client Alice @ T5> How are you?
+2025/10/29 16:15:12 Client Bobby @ T6> Great, how about you?
+2025/10/29 16:15:20 Client Alice @ T7> I'm fine. Tired...
+2025/10/29 16:15:27 Client Bobby @ T8> Aw, that's too bad
+2025/10/29 16:15:32 Client Bobby @ T9> Anyway, I gtg
+2025/10/29 16:15:34 Client Bobby @ T10> Bye
+2025/10/29 16:15:37 Client Alice @ T11> See ya!
+2025/10/29 16:15:40 Client Bobby @ T12> Participant Bobby left the ChitChat at logical time 12
+2025/10/29 16:15:42 Client Alice @ T13> Participant Alice left the ChitChat at logical time 13
