@@ -78,17 +78,20 @@ func (s *chitChatServer) ChatRoom(stream pb.ChitChat_ChatRoomServer) error {
 
 	// Goroutine / Thread to receive incoming messages from clients
 	for {
+
+		// Receive incoming message(s)
 		in, err := stream.Recv()
 		if err != nil {
 			return err
 		}
+
+		// Print and log new message(s)
 		fmt.Printf("Client %s @ T%d> %s\n", in.ClientName, in.Time, in.Message)
 		log.Printf("Client %s @ T%d> %s\n", in.ClientName, in.Time, in.Message)
 
+		// Lock, update latest message and unlock
 		s.mu.Lock()
-		if in.Time > s.lastMsg.Time {
-			s.lastMsg = in
-		}
+		s.lastMsg = in
 		s.mu.Unlock()
 	}
 
