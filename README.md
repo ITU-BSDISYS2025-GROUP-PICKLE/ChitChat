@@ -1,4 +1,11 @@
 # BSDISYS1KU Group pickle || Mandatory activity 3: ChitChat
+## How to run the program
+1. Run server \server go run server.go
+2. Run the first client \client go run client.go
+3. Run the second client \client go run client.go
+4. Enter a username in both clients.
+5. You can now chat ^_^ (with yourself)
+
 ## Description
 In this assignment you will design and implement Chit Chat, a distributed chat service where participants can join, exchange messages, and leave the conversation at any time. Chit Chat is a lively playground for exploring the essence of distributed systems: communication, coordination, and the ordering of events in a world without a single shared clock.
 
