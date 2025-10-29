@@ -94,9 +94,9 @@ const file_proto_proto_rawDesc = "" +
 	"\vclient_name\x18\x01 \x01(\tR\n" +
 	"clientName\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x12\n" +
-	"\x04time\x18\x03 \x01(\x03R\x04time2=\n" +
-	"\bChitChat\x121\n" +
-	"\tRouteChat\x12\x0e.proto.Message\x1a\x0e.proto.Message\"\x00(\x010\x01B\x10Z\x0eChitChat/protob\x06proto3"
+	"\x04time\x18\x03 \x01(\x03R\x04time2<\n" +
+	"\bChitChat\x120\n" +
+	"\bChatRoom\x12\x0e.proto.Message\x1a\x0e.proto.Message\"\x00(\x010\x01B\x10Z\x0eChitChat/protob\x06proto3"
 
 var (
 	file_proto_proto_rawDescOnce sync.Once
@@ -115,8 +115,8 @@ var file_proto_proto_goTypes = []any{
 	(*Message)(nil), // 0: proto.Message
 }
 var file_proto_proto_depIdxs = []int32{
-	0, // 0: proto.ChitChat.RouteChat:input_type -> proto.Message
-	0, // 1: proto.ChitChat.RouteChat:output_type -> proto.Message
+	0, // 0: proto.ChitChat.ChatRoom:input_type -> proto.Message
+	0, // 1: proto.ChitChat.ChatRoom:output_type -> proto.Message
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

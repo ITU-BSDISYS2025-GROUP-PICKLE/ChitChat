@@ -7,7 +7,7 @@ package proto;
 service ChitChat {
     // A Bidirectional streaming RPC.
     // Accepts a stream of Messages sent, while receiving other Messages (from other users).
-    rpc RouteChat(stream Message) returns (stream Message) {}
+    rpc ChatRoom(stream Message) returns (stream Message) {}
 }
 
 // A Message contains the client's name, the message content and a Lamport timestamp.

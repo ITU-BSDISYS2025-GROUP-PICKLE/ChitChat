@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChitChat_RouteChat_FullMethodName = "/proto.ChitChat/RouteChat"
+	ChitChat_ChatRoom_FullMethodName = "/proto.ChitChat/ChatRoom"
 )
 
 // ChitChatClient is the client API for ChitChat service.
@@ -28,7 +28,7 @@ const (
 type ChitChatClient interface {
 	// A Bidirectional streaming RPC.
 	// Accepts a stream of Messages sent, while receiving other Messages (from other users).
-	RouteChat(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Message, Message], error)
+	ChatRoom(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Message, Message], error)
 }
 
 type chitChatClient struct {
@@ -39,9 +39,9 @@ func NewChitChatClient(cc grpc.ClientConnInterface) ChitChatClient {
 	return &chitChatClient{cc}
 }
 
-func (c *chitChatClient) RouteChat(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Message, Message], error) {
+func (c *chitChatClient) ChatRoom(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[Message, Message], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ChitChat_ServiceDesc.Streams[0], ChitChat_RouteChat_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ChitChat_ServiceDesc.Streams[0], ChitChat_ChatRoom_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *chitChatClient) RouteChat(ctx context.Context, opts ...grpc.CallOption)
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ChitChat_RouteChatClient = grpc.BidiStreamingClient[Message, Message]
+type ChitChat_ChatRoomClient = grpc.BidiStreamingClient[Message, Message]
 
 // ChitChatServer is the server API for ChitChat service.
 // All implementations must embed UnimplementedChitChatServer
@@ -58,7 +58,7 @@ type ChitChat_RouteChatClient = grpc.BidiStreamingClient[Message, Message]
 type ChitChatServer interface {
 	// A Bidirectional streaming RPC.
 	// Accepts a stream of Messages sent, while receiving other Messages (from other users).
-	RouteChat(grpc.BidiStreamingServer[Message, Message]) error
+	ChatRoom(grpc.BidiStreamingServer[Message, Message]) error
 	mustEmbedUnimplementedChitChatServer()
 }
 
@@ -69,8 +69,8 @@ type ChitChatServer interface {
 // pointer dereference when methods are called.
 type UnimplementedChitChatServer struct{}
 
-func (UnimplementedChitChatServer) RouteChat(grpc.BidiStreamingServer[Message, Message]) error {
-	return status.Errorf(codes.Unimplemented, "method RouteChat not implemented")
+func (UnimplementedChitChatServer) ChatRoom(grpc.BidiStreamingServer[Message, Message]) error {
+	return status.Errorf(codes.Unimplemented, "method ChatRoom not implemented")
 }
 func (UnimplementedChitChatServer) mustEmbedUnimplementedChitChatServer() {}
 func (UnimplementedChitChatServer) testEmbeddedByValue()                  {}
@@ -93,12 +93,12 @@ func RegisterChitChatServer(s grpc.ServiceRegistrar, srv ChitChatServer) {
 	s.RegisterService(&ChitChat_ServiceDesc, srv)
 }
 
-func _ChitChat_RouteChat_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ChitChatServer).RouteChat(&grpc.GenericServerStream[Message, Message]{ServerStream: stream})
+func _ChitChat_ChatRoom_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ChitChatServer).ChatRoom(&grpc.GenericServerStream[Message, Message]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ChitChat_RouteChatServer = grpc.BidiStreamingServer[Message, Message]
+type ChitChat_ChatRoomServer = grpc.BidiStreamingServer[Message, Message]
 
 // ChitChat_ServiceDesc is the grpc.ServiceDesc for ChitChat service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -109,8 +109,8 @@ var ChitChat_ServiceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "RouteChat",
-			Handler:       _ChitChat_RouteChat_Handler,
+			StreamName:    "ChatRoom",
+			Handler:       _ChitChat_ChatRoom_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
