@@ -1,4 +1,12 @@
 # BSDISYS1KU Group pickle || Mandatory activity 3: ChitChat
+## How to run the program
+1. Run server \server go run server.go
+2. Run the first client \client go run client.go
+3. Run the second client \client go run client.go
+4. Enter a username in both clients.
+5. You can now chat ^_^ (with yourself).
+6. Type /exit to leave the chat.
+
 ## Description
 In this assignment you will design and implement Chit Chat, a distributed chat service where participants can join, exchange messages, and leave the conversation at any time. Chit Chat is a lively playground for exploring the essence of distributed systems: communication, coordination, and the ordering of events in a world without a single shared clock.
 
@@ -20,33 +28,33 @@ In this assignment you will design and implement Chit Chat, a distributed chat s
 
 
 ## Technical requirements
-- [ ] The system must be implemented in Go
+- [x] The system must be implemented in Go
 
-- [ ] The gRPC framework must be used for client–server communication, using Protocol Buffers (you must provide a .proto file) for message definitions.
+- [x] The gRPC framework must be used for client–server communication, using Protocol Buffers (you must provide a .proto file) for message definitions.
 
-- [ ] The Go log standard library must be used for structured logging of events (e.g. client join/leave notifications, message delivery, and server startup/shutdown).
+- [x] The Go log standard library must be used for structured logging of events (e.g. client join/leave notifications, message delivery, and server startup/shutdown).
 
-- [ ] Concurrency (local to the server or the clients) must be handled using Go routines and channels for synchronised communication between components
+- [x] Concurrency (local to the server or the clients) must be handled using Go routines and channels for synchronised communication between components
 
-- [ ] Every client and the server must be deployed as separate processes
+- [x] Every client and the server must be deployed as separate processes
 
-- [ ] Each client connection must be served by a dedicated goroutine managed by the server.
+- [x] Each client connection must be served by a dedicated goroutine managed by the server.
 
-- [ ] The system must support multiple concurrent client connections without blocking message delivery.
+- [x] The system must support multiple concurrent client connections without blocking message delivery.
 
-- [ ] The system must log the following events:
+- [x] The system must log the following events: (Our server shutdown doesnt work properly)
   * Server startup and shutdown
   * Client connection and disconnection events
   * Broadcast of join/leave messages
   * Message delivery events
 
-- [ ] Log messages must include:
+- [x] Log messages must include:
   * Timestamp
   * Component name (Server/Client)
   * Event type
   * Relevant identifiers (e.g. Client ID).
 
-- [ ] The system can be started with at least three (3) nodes (two client and a server) and it must be able to handle "join" of at least one client and "leave" of at least one client
+- [x] The system can be started with at least three (3) nodes (two client and a server) and it must be able to handle "join" of at least one client and "leave" of at least one client
 
 
 ## Hand-in Requirements
@@ -66,15 +74,15 @@ In this assignment you will design and implement Chit Chat, a distributed chat s
 >
 >> readme.md  # readme file
 
-- [ ] You must include system logs that document the requirements are met, in both the appendix of your report and your repo
+- [x] You must include system logs that document the requirements are met, in both the appendix of your report and your repo
 
 
 ## Report requirements
-- [ ] Discuss, whether you are going to use server-side streaming, client-side streaming, or bidirectional streaming?
+- [x] Discuss, whether you are going to use server-side streaming, client-side streaming, or bidirectional streaming?
 
-- [ ] Describe your system architecture - do you have a server-client architecture, peer-to-peer, or something else?
+- [x] Describe your system architecture - do you have a server-client architecture, peer-to-peer, or something else?
 
-- [ ] Describe what RPC methods are implemented, of what type, and what messages types are used for communication
+- [x] Describe what RPC methods are implemented, of what type, and what messages types are used for communication
 
 - [ ] Describe how you have implemented the calculation of the Lamport timestamps
 
