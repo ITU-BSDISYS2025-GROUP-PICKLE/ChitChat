@@ -86,6 +86,10 @@ func main() {
 			continue
 		}
 
+		if len(input) > 127 {
+			fmt.Println("Error: message too long")
+		}
+
 		// Disconnet if input is '/exit'
 		if input == "/exit" {
 			break
