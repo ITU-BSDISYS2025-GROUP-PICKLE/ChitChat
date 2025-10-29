@@ -59,3 +59,37 @@ func main() {
 	defer log.Println("Server shutting down.")
 	grpcServer.Serve(lis)
 }
+
+// ChatRoom receives a stream of Messages, and responds with a stream of the latest Message
+func (s *chitChatServer) ChatRoom(stream pb.ChitChat_ChatRoomServer) error {
+
+	// Goroutine / Thread to send the latest message to listening clients
+	go func() error {
+		for {
+			// Send latest message
+			if err := stream.Send(s.lastMsg); err != nil {
+				return err
+			}
+
+			// Restrict the server to only send 100 times/sec (as opposed to several thousands)
+			time.Sleep(10 * time.Millisecond)
+		}
+	}()
+
+	// Goroutine / Thread to receive incoming messages from clients
+	for {
+		in, err := stream.Recv()
+		if err != nil {
+			return err
+		}
+		fmt.Printf("Client %s @ T%d> %s\n", in.ClientName, in.Time, in.Message)
+		log.Printf("Client %s @ T%d> %s\n", in.ClientName, in.Time, in.Message)
+
+		s.mu.Lock()
+		if in.Time > s.lastMsg.Time {
+			s.lastMsg = in
+		}
+		s.mu.Unlock()
+	}
+
+}
