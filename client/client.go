@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"google.golang.org/grpc"
@@ -57,5 +58,41 @@ func main() {
 	err = stream.Send(&pb.Message{Message: arrival, ClientName: clientName, Time: lamportTime})
 	if err != nil {
 		log.Fatalf("client.RouteChat: stream.Send(%v) failed: %v", err, err)
+	}
+
+	// Continually read latest message from the server
+	go func() {
+		for {
+			in, err := stream.Recv()
+			if err != nil {
+				log.Fatalf("client.RouteChat failed: %v", err)
+			}
+
+			// This logic ensures only new messages received from the server are printed
+			if in.Time >= lamportTime {
+				fmt.Printf("T%d | %s > %s\n", in.Time, in.ClientName, in.Message)
+				lamportTime = in.Time + 1
+			}
+		}
+	}()
+
+	// Continually send input messages to the server
+	for {
+		scanner.Scan()
+		input := scanner.Text()
+
+		// Ignore empty input
+		if strings.Trim(input, " ") == "" {
+			continue
+		}
+
+		// Disconnet if input is '/exit'
+		if input == "/exit" {
+			break
+		}
+
+		if err := stream.Send(&pb.Message{Message: input, ClientName: clientName, Time: lamportTime}); err != nil {
+			log.Fatalf("client.RouteChat: stream.Send(%v) failed: %v", err, err)
+		}
 	}
 }
