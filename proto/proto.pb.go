@@ -25,11 +25,11 @@ const (
 type Message struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The client's name.
-	ClientName *string `protobuf:"bytes,1,req,name=client_name,json=clientName" json:"client_name,omitempty"`
+	ClientName string `protobuf:"bytes,1,opt,name=client_name,json=clientName,proto3" json:"client_name,omitempty"`
 	// The message to be sent.
-	Message *string `protobuf:"bytes,2,req,name=message" json:"message,omitempty"`
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// Lamport timestamp.
-	Time          *int64 `protobuf:"varint,3,req,name=time" json:"time,omitempty"`
+	Time          int64 `protobuf:"varint,3,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,22 +65,22 @@ func (*Message) Descriptor() ([]byte, []int) {
 }
 
 func (x *Message) GetClientName() string {
-	if x != nil && x.ClientName != nil {
-		return *x.ClientName
+	if x != nil {
+		return x.ClientName
 	}
 	return ""
 }
 
 func (x *Message) GetMessage() string {
-	if x != nil && x.Message != nil {
-		return *x.Message
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
 
 func (x *Message) GetTime() int64 {
-	if x != nil && x.Time != nil {
-		return *x.Time
+	if x != nil {
+		return x.Time
 	}
 	return 0
 }
@@ -91,12 +91,12 @@ const file_proto_proto_rawDesc = "" +
 	"\n" +
 	"\vproto.proto\x12\x05proto\"X\n" +
 	"\aMessage\x12\x1f\n" +
-	"\vclient_name\x18\x01 \x02(\tR\n" +
+	"\vclient_name\x18\x01 \x01(\tR\n" +
 	"clientName\x12\x18\n" +
-	"\amessage\x18\x02 \x02(\tR\amessage\x12\x12\n" +
-	"\x04time\x18\x03 \x02(\x03R\x04time2=\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x12\n" +
+	"\x04time\x18\x03 \x01(\x03R\x04time2=\n" +
 	"\bChitChat\x121\n" +
-	"\tRouteChat\x12\x0e.proto.Message\x1a\x0e.proto.Message\"\x00(\x010\x01B\x10Z\x0eChitChat/proto"
+	"\tRouteChat\x12\x0e.proto.Message\x1a\x0e.proto.Message\"\x00(\x010\x01B\x10Z\x0eChitChat/protob\x06proto3"
 
 var (
 	file_proto_proto_rawDescOnce sync.Once

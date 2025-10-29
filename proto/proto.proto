@@ -1,4 +1,5 @@
 
+syntax = "proto3";
 option go_package = "ChitChat/proto";
 
 package proto;
@@ -12,11 +13,11 @@ service ChitChat {
 // A Message contains the client's name, the message content and a Lamport timestamp.
 message Message {
   // The client's name.
-  required string client_name = 1;
+  string client_name = 1;
 
   // The message to be sent.
-  required string message = 2;
+  string message = 2;
 
   // Lamport timestamp.
-  required int64 time = 3;
+  int64 time = 3;
 }
