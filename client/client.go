@@ -2,8 +2,10 @@ package main
 
 import (
 	pb "ChitChat/proto"
+	"bufio"
 	"context"
 	"log"
+	"os"
 	"time"
 
 	"google.golang.org/grpc"
@@ -31,4 +33,21 @@ func main() {
 	if err != nil {
 		log.Fatalf("client.RouteChat failed: %v", err)
 	}
+
+	// Set a client name (username)
+	println()
+	print("Please enter your name (public to other users): ")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	clientName := scanner.Text()
+	println()
+
+	// Read the latest message from the server (to get timestamp)
+	in, err := stream.Recv()
+	if err != nil {
+		log.Fatalf("client.RouteChat failed: %v", err)
+	}
+
+	// Create Lamport timestamp
+	var lamportTime int64 = in.Time + 1
 }
