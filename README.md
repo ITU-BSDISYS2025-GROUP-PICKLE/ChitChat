@@ -58,13 +58,13 @@ In this assignment you will design and implement Chit Chat, a distributed chat s
 
 
 ## Hand-in Requirements
-- [ ] You must hand in a report (single pdf file) via LearnIT
+- [x] You must hand in a report (single pdf file) via LearnIT
 
-- [ ] You must provide a link to a Git repo with your source code in the report
+- [x] You must provide a link to a Git repo with your source code in the report
 
-- [ ] Your repo must include a README.md file that describes how to run your program.
+- [x] Your repo must include a README.md file that describes how to run your program.
 
-- [ ] You repo must structured as follows:
+- [x] You repo must structured as follows:
 > project-root/
 >> client/ # contains the client code
 >
@@ -84,8 +84,8 @@ In this assignment you will design and implement Chit Chat, a distributed chat s
 
 - [x] Describe what RPC methods are implemented, of what type, and what messages types are used for communication
 
-- [ ] Describe how you have implemented the calculation of the Lamport timestamps
+- [x] Describe how you have implemented the calculation of the Lamport timestamps
 
-- [ ] Provide a diagram, that traces a sequence of RPC calls together with the Lamport timestamps, that corresponds to a chosen sequence of interactions: Client X joins, Client X Publishes, ..., Client X leaves. 
+- [x] Provide a diagram, that traces a sequence of RPC calls together with the Lamport timestamps, that corresponds to a chosen sequence of interactions: Client X joins, Client X Publishes, ..., Client X leaves. 
 
-- [ ] You must include system logs that document the requirements are met, in both the appendix of your report and your repo
+- [x] You must include system logs that document the requirements are met, in both the appendix of your report and your repo
